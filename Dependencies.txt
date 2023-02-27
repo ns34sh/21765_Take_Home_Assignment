@@ -1,0 +1,7 @@
+Dependencies for each module are listed below:
+
+-> file_parsing_module.py uses "argparse" library.
+
+-> read_clean_data.py uses "csv" and "re" library.
+
+-> print_results.py uses "tabulate" library (https://pypi.org/project/tabulate/)
