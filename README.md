@@ -21,3 +21,5 @@ ordering).
 ** For parameters -o, -u, -d; column names are case-sensitive.
 ** Similary, for -m parameter; the string is filtering is case-sensitive.
 ** Only one parameter out of -u or -d should be used at a time. 
+** The program also removes alphnumeric characters from strings and 
+  truncates strings with longer than 10 characters (i.e. only first 10 characters are retained)
