@@ -29,9 +29,9 @@ def filter_row(row, include_col):
 # Function that takes as input the parameters returned by file_parsing_module
 # and returns the number of rows in the input data and filtered data for further
 # processing by print_results module.
-def read_data(separator, display_headers, include_col, sort_up_col, 
-                  sort_down_col, specified_string, max_rows, path):
-    
+def read_data(args):
+    separator, display_headers, include_col, sort_up_col, sort_down_col, \
+    specified_string, max_rows, path = args
     # Raise error if the input file is not a csv file
     if path[-4:] != ".csv":
         raise Exception("File type is not csv")
@@ -47,6 +47,8 @@ def read_data(separator, display_headers, include_col, sort_up_col,
     num_rows = len(data_list) + 1
     # headers in the input csv file
     headers = list(data_list[0].keys())
+    # Remove alphanumeric characters and truncate length in headers
+    headers = [filter_word(word) for word in headers]
     # Number of columns in the input csv file
     num_cols = len(headers)
     
@@ -88,13 +90,14 @@ def read_data(separator, display_headers, include_col, sort_up_col,
         if display_headers:
             print(headers)
             exit()
-        
+
         # If any row contains more entries than number of headers, then ignore such rows
         if len(row) == num_cols:
             values_list = list(row.values())
             # If user has specified a string that should be present in each row
             # then only include rows with such strings
-            if specified_string == '' or specified_string in values_list:
+            if (specified_string == '' or specified_string in values_list) and \
+            not (None in values_list):
                 #Remove alphanumeric characters and truncate 
                 filtered_data.append(filter_row(row, include_col))
     

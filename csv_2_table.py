@@ -11,8 +11,7 @@ from print_results import print_output
 # Function to print a csv file as a table after modifying the data based on
 # some filtering and sorting criteria provided by the user
 def main():
-    print_output(read_data(parse_input))
-    
+    print_output(read_data(parse_input()))
     
 if __name__ == "__main__":
     main()
